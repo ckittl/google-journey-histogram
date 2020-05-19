@@ -3,6 +3,7 @@ package model
 type Leg struct {
 	Distance          TextValue `json:"distance"`
 	Duration          TextValue `json:"duration"`
+	DurationInTraffic TextValue `json:"duration_in_traffic"`
 	EndAddress        string    `json:"end_address"`
 	EndLocation       LatLon    `json:"end_location"`
 	StartAddress      string    `json:"start_address"`

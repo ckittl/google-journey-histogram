@@ -29,15 +29,15 @@ func main() {
 	for _, journey := range journeys {
 		origin := journey.Origin
 		destination := journey.Destination
+		timeStamp := time.Now()
 
 		/* Get the travel time from google api */
-		travelTime, err := googleapi.GetTravelTime(origin, destination, apiKey)
+		travelTime, err := googleapi.GetTravelTime(origin, destination, timeStamp, apiKey)
 		if err != nil {
 			log.Fatalf("Error during API request. Error: '%s'", err)
 		}
 
 		/* Write the travel time to csv file */
-		timeStamp := time.Now()
 		entry := io.BuildCsvEntry(timeStamp, origin, destination, travelTime)
 		err = io.AppendToFile(outputFile, entry)
 		if err != nil {

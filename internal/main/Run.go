@@ -1,11 +1,15 @@
 package main
 
-import "googleJourneyHistogram/internal/googleapi"
+import (
+	"googleJourneyHistogram/internal/googleapi"
+	"strconv"
+)
 
 func main() {
-	apiResponse, err := googleapi.QueryApi("Hamburg", "Berlin", "YOUR-API-KEY")
+	travelTime, err := googleapi.GetTravelTime("Hamburg", "Berlin", "YOUR-API-KEY")
 	if err != nil {
 		panic(err)
 	}
-	println(apiResponse.Status)
+
+	println("The current journey would take you " + strconv.Itoa(travelTime) + " minutes.")
 }

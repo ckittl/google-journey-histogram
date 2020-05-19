@@ -63,6 +63,13 @@ func AppendToFile(path string, content []string) error {
 }
 
 // Builds an array of strings as entry to a csv file
-func BuildCsvEntry(timeStamp time.Time, travelTime int) []string {
-	return []string{timeStamp.Format("2006-01-02 15:04:05"), thisTime.GetDayType(timeStamp).String(), strconv.Itoa(timeStamp.Hour()), strconv.Itoa(travelTime)}
+func BuildCsvEntry(timeStamp time.Time, origin string, destination string, travelTime int) []string {
+	return []string{
+		timeStamp.Format("2006-01-02 15:04:05"),
+		thisTime.GetDayType(timeStamp).String(),
+		strconv.Itoa(timeStamp.Hour()),
+		origin,
+		destination,
+		strconv.Itoa(travelTime),
+	}
 }

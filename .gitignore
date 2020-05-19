@@ -16,3 +16,6 @@
 
 # JetBrains IDE files
 .idea
+
+# Results folder
+output

@@ -40,3 +40,17 @@ func CalcDurationInMinutes(duration string) int {
 	minutes, _ := strconv.Atoi(string(submatches[2]))
 	return hours*60 + minutes
 }
+
+// Let's the routine wait for the next full duration
+func WaitToNextFull(dur gotime.Duration) {
+	executionStart := gotime.Now().Add(dur).Truncate(dur)
+	println("Wait until " + executionStart.Format("2006-01-02 15:04:05"))
+	gotime.Sleep(gotime.Until(executionStart))
+}
+
+// Build one ticker, that gives the frequency and one that gives the end of the frequency ticks
+func GetTickers(frequency gotime.Duration, runDuration gotime.Duration) (*gotime.Ticker, *gotime.Timer) {
+	frequencyTicker := gotime.NewTicker(frequency)
+	endTimer := gotime.NewTimer(runDuration)
+	return frequencyTicker, endTimer
+}

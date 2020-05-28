@@ -7,6 +7,7 @@ import (
 	thisTime "googleJourneyHistogram/internal/time"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -29,9 +30,12 @@ func GetTravelTime(origin string, destination string, timeStamp time.Time, apiKe
 func queryApi(origin string, destination string, timeStamp time.Time, apiKey string) (model.ApiResponse, error) {
 	var apiResponse model.ApiResponse
 
+	cleanOrigin := strings.ReplaceAll(origin, " ", "%20")
+	cleanDestination := strings.ReplaceAll(destination, " ", "%20")
+
 	queryString := "https://maps.googleapis.com/maps/api/directions/json?" +
-		"origin=" + origin +
-		"&destination=" + destination +
+		"origin=" + cleanOrigin +
+		"&destination=" + cleanDestination +
 		"&mode=driving" +
 		"&departure_time=" + strconv.FormatInt(timeStamp.Unix(), 10) +
 		"&key=" + apiKey

@@ -17,9 +17,9 @@ const (
 func GetDayType(time gotime.Time) DayType {
 	weekDay := time.Weekday()
 	if weekDay == gotime.Sunday || weekDay == gotime.Saturday {
-		return WorkingDay
-	} else {
 		return WeekEnd
+	} else {
+		return WorkingDay
 	}
 }
 

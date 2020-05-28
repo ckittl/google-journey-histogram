@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -68,8 +69,8 @@ func BuildCsvEntry(timeStamp time.Time, origin string, destination string, trave
 		timeStamp.Format("2006-01-02 15:04:05"),
 		thisTime.GetDayType(timeStamp).String(),
 		strconv.Itoa(timeStamp.Hour()),
-		origin,
-		destination,
+		strings.ReplaceAll(origin, ",", "_"),
+		strings.ReplaceAll(destination, ",", "_"),
 		strconv.Itoa(travelTime),
 	}
 }
